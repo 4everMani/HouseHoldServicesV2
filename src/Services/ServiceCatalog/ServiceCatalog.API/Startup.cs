@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ServiceCatalog.API.Data;
+using ServiceCatalog.API.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +33,8 @@ namespace ServiceCatalog.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ServiceCatalog.API", Version = "v1" });
             });
+            services.AddScoped<IServiceCatalogContext, ServiceCatalogContext>();
+            services.AddScoped<IServiceRepository, ServiceRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
