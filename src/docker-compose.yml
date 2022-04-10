@@ -3,11 +3,21 @@ version: '3.4'
 services:
   servicecatalogdb:
     image: mongo
+
+  cartdb:
+    image: redis:alpine
+
   servicecatalog.api:
     image: ${DOCKER_REGISTRY-}servicecatalogapi
     build:
       context: .
       dockerfile: Services/ServiceCatalog/ServiceCatalog.API/Dockerfile
+
+  cart.api:
+    image: ${DOCKER_REGISTRY-}cartapi
+    build:
+      context: .
+      dockerfile: Services/Cart/Cart.API/Dockerfile
 
 volumes:
   mongo_data:
