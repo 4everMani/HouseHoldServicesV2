@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "ServiceCatalog.API.Protos";
+
+service CatalogProtoService {
+	rpc GetCatalog(GetCatalogRequest) returns (Catalog);
+}
+
+message GetCatalogRequest {
+	string serviceId = 1;
+}
+
+message Catalog {
+	string serviceName = 1;
+    string serviceProvider = 2;
+    string providerEmail = 3;
+    int32 providerContactNumber = 4;
+    string description = 5;
+    repeated int32 pinCodeCovers = 6;
+
+}
+
+
+

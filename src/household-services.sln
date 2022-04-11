@@ -13,7 +13,7 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{914B2B9F-7C23-4DDD-97B0-61A88A6A2AD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cart.API", "Services\Cart\Cart.API\Cart.API.csproj", "{7DDBD3B1-576E-4159-A75C-C3B503EE824D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cart.API", "Services\Cart\Cart.API\Cart.API.csproj", "{7DDBD3B1-576E-4159-A75C-C3B503EE824D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
