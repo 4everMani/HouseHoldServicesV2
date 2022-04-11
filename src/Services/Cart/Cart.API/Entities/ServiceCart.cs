@@ -20,17 +20,6 @@ namespace Cart.API.Entities
             UserName = username;
         }
 
-        public decimal TotalPrice
-        {
-            get
-            {
-                decimal totalPrice = 0;
-                foreach (var item in Items)
-                {
-                    totalPrice += item.Price;
-                }
-                return totalPrice;
-            }
-        }
+        public decimal TotalPrice { get; set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Cart.API.Entities;
+using Cart.API.GrpcServices;
 using Cart.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -12,9 +14,12 @@ namespace Cart.API.Controllers
     {
         private readonly ICartRepository _cartRepository;
 
-        public CartController(ICartRepository cartRepository)
+        private readonly CatalogGrpcService _grpcService;
+
+        public CartController(ICartRepository cartRepository, CatalogGrpcService grpcService)
         {
             _cartRepository = cartRepository;
+            _grpcService = grpcService;
         }
 
         [HttpGet("{userName}", Name = "GetCart")]
@@ -27,7 +32,7 @@ namespace Cart.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(ServiceCart), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<ServiceCart>> UpdateCart([FromBody] ServiceCart cart)
+        public async Task<ActionResult<ServiceCart>> UpdateCart([FromBody] ServiceCartWrite cart)
         {
             return Ok(await _cartRepository.UpdateCart(cart));
         }

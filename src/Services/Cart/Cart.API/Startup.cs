@@ -1,3 +1,4 @@
+using Cart.API.GrpcServices;
 using Cart.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ServiceCatalog.API.Protos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +36,12 @@ namespace Cart.API
 
             services.AddControllers();
             services.AddScoped<ICartRepository, CartRepository>();
+
+            services.AddGrpcClient<CatalogProtoService.CatalogProtoServiceClient>
+                (o => o.Address = new Uri(Configuration["GrpcSettings:CatalogUrl"]));
+
+            services.AddScoped<CatalogGrpcService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart.API", Version = "v1" });

@@ -7,7 +7,7 @@ namespace Cart.API.Repositories
     {
         Task<ServiceCart> GetCart(string userName);
 
-        Task<ServiceCart> UpdateCart(ServiceCart cart);
+        Task<ServiceCart> UpdateCart(ServiceCartWrite cart);
 
         Task DeleteCart(string userName);
     }

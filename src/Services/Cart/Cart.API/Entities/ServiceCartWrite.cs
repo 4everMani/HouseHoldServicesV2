@@ -7,5 +7,8 @@ namespace Cart.API.Entities
 {
     public class ServiceCartWrite
     {
+        public string UserName { get; set; }
+
+        public List<string> serviceIds { get; set; }
     }
 }

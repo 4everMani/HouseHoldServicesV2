@@ -14,9 +14,10 @@ message Catalog {
 	string serviceName = 1;
     string serviceProvider = 2;
     string providerEmail = 3;
-    int32 providerContactNumber = 4;
+    int64 providerContactNumber = 4;
     string description = 5;
     repeated int32 pinCodeCovers = 6;
+    int32 price = 7;
 
 }
 
