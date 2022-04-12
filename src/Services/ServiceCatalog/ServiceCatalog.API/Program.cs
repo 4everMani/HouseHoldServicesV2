@@ -28,7 +28,7 @@ namespace ServiceCatalog.API
                             cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
                         });
 
-                        options.Listen(IPAddress.Loopback, 5000, cfg =>
+                        options.Listen(IPAddress.Loopback, 8000, cfg =>
                         {
                             cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1;
                         });
