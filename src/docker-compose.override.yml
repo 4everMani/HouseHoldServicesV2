@@ -31,9 +31,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://servicecatalogdb:27017"
       - "Kestrel:Endpoints:webApi:Protocols=Http1"
-      - "Kestrel:Endpoints:webApi:Url=http://servicecatalog.api:8000"
-      - "Kestrel:Endpoints:Grpc:Protocols=Http1"
-      - "Kestrel:Endpoints:Grpc:Url=http://servicecatalog.api:9099"
+      - "Kestrel:Endpoints:webApi:Url=http://servicecatalog.api:80"
+      - "Kestrel:Endpoints:Grpc:Protocols=Http2"
+      - "Kestrel:Endpoints:Grpc:Url=http://servicecatalog.api:80"
     depends_on:
       - servicecatalogdb
     ports:
