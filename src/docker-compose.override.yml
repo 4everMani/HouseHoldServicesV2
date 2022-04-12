@@ -45,7 +45,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
-      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:9099"
+      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:443"
     depends_on:
       - cartdb
     ports:
