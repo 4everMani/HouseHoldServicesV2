@@ -21,18 +21,18 @@ namespace ServiceCatalog.API
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.ConfigureKestrel(options =>
-                    {
-                        options.Listen(IPAddress.Loopback, 5555, cfg =>
-                        {
-                            cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
-                        });
+                    //webBuilder.ConfigureKestrel(options =>
+                    //{
+                    //    options.Listen(IPAddress.Loopback, 5555, cfg =>
+                    //    {
+                    //        cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2;
+                    //    });
 
-                        options.Listen(IPAddress.Loopback, 8000, cfg =>
-                        {
-                            cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1;
-                        });
-                    });
+                    //    options.Listen(IPAddress.Loopback, 8000, cfg =>
+                    //    {
+                    //        cfg.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1;
+                    //    });
+                    //});
                     webBuilder.UseStartup<Startup>();
                 });
     }
