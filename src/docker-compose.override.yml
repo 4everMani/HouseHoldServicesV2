@@ -34,7 +34,7 @@ services:
       - servicecatalogdb
     ports:
       - "8000:80"
-      - "5555:80"
+      - "5555"
 
   cart.api:
     container_name: cart.api
