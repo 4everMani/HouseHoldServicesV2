@@ -34,14 +34,14 @@ services:
       - servicecatalogdb
     ports:
       - "8000:80"
-      - "5555:80"
+      - "5555:8000"
 
   cart.api:
     container_name: cart.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
-      - "GrpcSettings:CatalogUrl=servicecatalog.api"
+      - "GrpcSettings:CatalogUrl=servicecatalog.api:5555"
     depends_on:
       - cartdb
     ports:
