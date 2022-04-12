@@ -31,6 +31,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://servicecatalogdb:27017"
       - "Kestrel:Endpoints:webApi:Url=http://servicecatalog.api:8000"
+      - "Kestrel:Endpoints:Grpc:Url=http://servicecatalog.api:9099"
     depends_on:
       - servicecatalogdb
     ports:
@@ -41,7 +42,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
-      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:5555"
+      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:9099"
     depends_on:
       - cartdb
     ports:
