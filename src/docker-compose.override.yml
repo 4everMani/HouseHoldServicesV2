@@ -30,6 +30,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://servicecatalogdb:27017"
+      - "Kestrel:Endpoints:webApi:Url=http://servicecatalog.api:8000"
     depends_on:
       - servicecatalogdb
     ports:
