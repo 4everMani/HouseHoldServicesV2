@@ -6,10 +6,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY ["Services/Order/Order.API/Ordering.API.csproj", "Services/Order/Order.API/"]
-RUN dotnet restore "Services/Order/Order.API/Ordering.API.csproj"
+COPY ["Services/Order/Ordering.API/Ordering.API.csproj", "Services/Order/Ordering.API/"]
+RUN dotnet restore "Services/Order/Ordering.API/Ordering.API.csproj"
 COPY . .
-WORKDIR "/src/Services/Order/Order.API"
+WORKDIR "/src/Services/Order/Ordering.API"
 RUN dotnet build "Ordering.API.csproj" -c Release -o /app/build
 
 FROM build AS publish
