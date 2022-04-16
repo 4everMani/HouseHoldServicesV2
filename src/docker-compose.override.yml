@@ -50,3 +50,10 @@ services:
       - cartdb
     ports:
       - "8001:80"
+
+  ordering.api:
+    container_name: ordering.api
+    ports:
+      - "8002:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
