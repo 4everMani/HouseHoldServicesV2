@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ordering.API.Entities;
 
-namespace Order.API.Data
+namespace Ordering.API.Data
 {
     public class OrderContext : DbContext
     {
@@ -12,8 +13,9 @@ namespace Order.API.Data
         {
         }
 
-        public DbSet<Entities.Order> Orders { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
+        public DbSet<Service> Services { get; set; }
 
     }
 }

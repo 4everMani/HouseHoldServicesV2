@@ -52,8 +52,8 @@ namespace ServiceCatalog.API.Controllers
         [ProducesResponseType(typeof(IEnumerable<Service>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Service>>> GetServiceByProvider(string providerName)
         {
-            var service = await _repository.GetServiceByProvider(providerName);
-            return Ok(service);
+            var services = await _repository.GetServiceByProvider(providerName);
+            return Ok(services);
         }
 
         [HttpPost]
