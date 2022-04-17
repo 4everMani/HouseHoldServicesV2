@@ -1,5 +1,6 @@
 using Cart.API.GrpcServices;
 using Cart.API.Repositories;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace Cart.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            // redis configuration
             services.AddStackExchangeRedisCache(options =>
             {
                 options.Configuration = Configuration.GetValue<string>("CacheSettings:ConnectionString");
@@ -37,10 +38,21 @@ namespace Cart.API
             services.AddControllers();
             services.AddScoped<ICartRepository, CartRepository>();
 
+            // Grpc configuration
             services.AddGrpcClient<CatalogProtoService.CatalogProtoServiceClient>
                 (o => o.Address = new Uri(Configuration["GrpcSettings:CatalogUrl"]));
 
             services.AddScoped<CatalogGrpcService>();
+
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config =>{
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                });
+            });
+
+            services.AddMassTransitHostedService();
 
             services.AddSwaggerGen(c =>
             {

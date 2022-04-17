@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Ordering.API.Entities
+namespace EventBus.Message.Events
 {
-    public class Order
+    public class CartCheckoutEvent : IntegrationBaseEvent
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
-
         public string UserName { get; set; }
 
         public string OrderedBy { get; set; }
@@ -21,5 +19,7 @@ namespace Ordering.API.Entities
         public decimal TotalPrice { get; set; }
 
         public decimal ZipCode { get; set; }
+
+        public List<ServiceEvent> OrderedServices { get; set; }
     }
 }

@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace Ordering.API.Entities
+namespace EventBus.Message.Events
 {
-    public class Service
+    public class ServiceEvent
     {
-        [Key]
-        [Required]
-        public int Id { get; set; }
-
         public decimal Price { get; set; }
 
         public string ServiceName { get; set; }
@@ -21,7 +17,5 @@ namespace Ordering.API.Entities
         public string ProviderEmail { get; set; }
 
         public decimal ProviderContactNumber { get; set; }
-
-        public DateTime CreatedOn { get; set; }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using Cart.API.Entities;
 using Cart.API.GrpcServices;
+using Cart.API.Mapper;
 using Cart.API.Repositories;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Threading.Tasks;
+
 
 namespace Cart.API.Controllers
 {
@@ -16,10 +19,16 @@ namespace Cart.API.Controllers
 
         private readonly CatalogGrpcService _grpcService;
 
-        public CartController(ICartRepository cartRepository, CatalogGrpcService grpcService)
+        private readonly ILogger<CartController> _logger;
+
+        private readonly IPublishEndpoint _publishEndpoint;
+
+        public CartController(ICartRepository cartRepository, CatalogGrpcService grpcService, ILogger<CartController> logger, IPublishEndpoint publishEndpoint)
         {
             _cartRepository = cartRepository;
             _grpcService = grpcService;
+            _logger = logger;
+            _publishEndpoint = publishEndpoint;
         }
 
         [HttpGet("{userName}", Name = "GetCart")]
@@ -43,6 +52,35 @@ namespace Cart.API.Controllers
         {
             await _cartRepository.DeleteCart(userName);
             return Ok();
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> CartCheckout([FromBody] CartCheckout cartCheckout)
+        {
+            var cart = await _cartRepository.GetCart(cartCheckout.UserName);
+
+            if (cart == null)
+            {
+                _logger.LogInformation("Cart is empty for username {0}", cartCheckout.UserName);
+                return BadRequest();
+            }
+
+            cart.Items = _cartRepository.ZipCodeAvailability(cartCheckout.ZipCode, cart.Items);
+
+            if (cart != null && cart.Items != null && cart.Items.Count > 0)
+            {
+                var checkoutEvent = CartCheckoutMapper.Map(cart, cartCheckout);
+                await _publishEndpoint.Publish(checkoutEvent);
+                await DeleteCart(checkoutEvent.UserName);
+                return Accepted();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

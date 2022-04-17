@@ -43,7 +43,7 @@ namespace Ordering.API.Data
         {
             return new List<Service>
             {
-               new Service(){ OrderId = 1, Price = 2312, ProviderContactNumber = 2039456372, ProviderEmail = "fit32@gmail.com", ServiceName = "Fitness trainer", ServiceProvider="A-Z Fitness" }
+               new Service(){ UserName = "mani", Price = 2312, ProviderContactNumber = 2039456372, ProviderEmail = "fit32@gmail.com", ServiceName = "Fitness trainer", ServiceProvider="A-Z Fitness" }
             };
         }
     }

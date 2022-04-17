@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Ordering.API.Data;
 using Ordering.API.Entities;
+using Ordering.API.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,15 @@ namespace Ordering.API.Repositories
     {
         private readonly OrderContext _dbContext;
 
-        private readonly ILogger<OrderRepository> logger;
+        private readonly ILogger<OrderRepository> _logger;
 
         public OrderRepository(OrderContext dbContext, ILogger<OrderRepository> logger)
         {
             _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<Order> CancelOrder(int id)
+        public async Task<ReadOrder> CancelOrder(int id)
         {
             var order =  await _dbContext.Orders.Where(p => p.Id == id).FirstOrDefaultAsync();
 
@@ -31,44 +32,59 @@ namespace Ordering.API.Repositories
             }
             order.IsCancelled = true;
             await UpdateAsync(order);
-            return order;
+            return await GetService(order);
         }
 
-        public async Task<IEnumerable<Order>> GetAllCancelledOrders()
+        public async Task<IEnumerable<ReadOrder>> GetAllCancelledOrders()
         {
-            return await _dbContext.Orders.Where(p => p.IsCancelled == true).ToListAsync();
+            var orders = await _dbContext.Orders.Where(p => p.IsCancelled == true).ToListAsync();
+            
+            if (orders == null)
+            {
+                return null;
+            }
+
+            return await GetOrderList(orders);
         }
 
-        public async Task<IEnumerable<Order>> GetCancelledOrders(string userName)
+        public async Task<IEnumerable<ReadOrder>> GetCancelledOrders(string userName)
         {
-            return await _dbContext.Orders.Where(p => p.UserName == userName && p.IsCancelled == true).ToListAsync();
+            var orders = await _dbContext.Orders.Where(p => p.UserName == userName && p.IsCancelled == true).ToListAsync();
+            return await GetOrderList(orders);
         }
 
-        public async Task<Order> GetOrderById(int id)
+        public async Task<ReadOrder> GetOrderById(int id)
         {
             var order = await _dbContext.Orders.Where(p => p.Id == id).FirstOrDefaultAsync();
 
             return await GetService(order);
         }
 
-        public async Task<IEnumerable<Order>> GetOrderByUserName(string userName)
+        public async Task<IEnumerable<ReadOrder>> GetOrderByUserName(string userName)
         {
-            return await _dbContext.Orders.Where(p => p.UserName == userName).ToListAsync();
+            var orders = await _dbContext.Orders.Where(p => p.UserName == userName).ToListAsync();
+            return await GetOrderList(orders);
         }
 
-        public async Task<IEnumerable<Order>> GetOrders()
+        public async Task<IEnumerable<ReadOrder>> GetOrders()
         {
-            return await _dbContext.Orders.ToListAsync();
+            var orders = await _dbContext.Orders.ToListAsync();
+            return await GetOrderList(orders);
         }
 
-        public async Task CreateOrder(Order order)
+        public async Task<ReadOrder> CreateOrder(ReadOrder readOrder)
         {
-            if (order == null)
+            if (readOrder == null)
             {
-                throw new ArgumentNullException(nameof(order));
+                throw new ArgumentNullException(nameof(readOrder));
             }
-            await _dbContext.AddAsync(order);
+            var order = OrderMapper.Map(readOrder);
+            await _dbContext.Orders.AddAsync(order);
+            await _dbContext.Services.AddRangeAsync(readOrder.OrderedServices);
             await _dbContext.SaveChangesAsync();
+            _logger.LogInformation("Order Created Successfully, " +
+                " Information required for service providers are as follows => {0}", order);
+            return await GetService(order);
         }
 
         public async Task UpdateAsync(Order order)
@@ -77,11 +93,32 @@ namespace Ordering.API.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        private async Task<Order> GetService(Order order)
+        private async Task<ReadOrder> GetService(Order order)
         {
-            var services = await _dbContext.Services.Where(i => i.OrderId == order.Id).ToListAsync();
-            order.OrderedServices = (services);
-            return order;
+            var readOrder = new ReadOrder();
+            var services = await _dbContext.Services.Where(i => i.CreatedOn == order.CreatedOn).ToListAsync();
+            readOrder.ZipCode = order.ZipCode;
+            readOrder.UserName = order.UserName;
+            readOrder.TotalPrice = order.TotalPrice;
+            readOrder.OrderedBy = order.OrderedBy;
+            readOrder.IsCancelled = order.IsCancelled;
+            readOrder.CreatedOn = order.CreatedOn;
+            readOrder.OrderedServices = services;
+            return readOrder;
+        }
+
+        private async Task<IEnumerable<ReadOrder>> GetOrderList(List<Order> orders)
+        {
+            var readOrderList = new List<ReadOrder>();
+
+            if (orders != null && orders.Count > 0)
+            {
+                foreach (var order in orders)
+                {
+                    readOrderList.Add(await GetService(order));
+                }
+            }
+            return readOrderList;
         }
 
     }

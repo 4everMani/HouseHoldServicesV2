@@ -8,19 +8,19 @@ namespace Ordering.API.Repositories
 {
     public interface IOrderRepository
     {
-        Task<IEnumerable<Order>> GetOrders();
+        Task<IEnumerable<ReadOrder>> GetOrders();
 
-        Task CreateOrder(Order order);
+        Task CreateOrder(ReadOrder order);
 
-        Task<IEnumerable<Order>> GetOrderByUserName(string userName);
+        Task<IEnumerable<ReadOrder>> GetOrderByUserName(string userName);
 
-        Task<Order> GetOrderById(int id);
+        Task<ReadOrder> GetOrderById(int id);
 
-        Task<Order> CancelOrder(int id);
+        Task<ReadOrder> CancelOrder(int id);
 
-        Task<IEnumerable<Order>> GetCancelledOrders(string userName);
+        Task<IEnumerable<ReadOrder>> GetCancelledOrders(string userName);
 
-        Task<IEnumerable<Order>> GetAllCancelledOrders();
+        Task<IEnumerable<ReadOrder>> GetAllCancelledOrders();
 
 
     }

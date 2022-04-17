@@ -58,7 +58,7 @@ namespace Ordering.API.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(Order), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Order>> CreateOrder([FromBody] Order order)
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] ReadOrder order)
         {
             await _repo.CreateOrder(order);
             return CreatedAtRoute("GetOrder", new { id = order.Id }, order);

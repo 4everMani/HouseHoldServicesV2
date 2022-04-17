@@ -1,3 +1,5 @@
+using EventBus.Message.Common;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -6,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Ordering.API.Data;
+using Ordering.API.EventBusConsumer;
 using Ordering.API.Repositories;
 
 namespace Ordering.API
@@ -27,7 +30,25 @@ namespace Ordering.API
 
             services.AddScoped<IOrderRepository, OrderRepository>();
 
+            // MassTransit-RabbitMQ Configuration
+            services.AddMassTransit(config => {
+
+                config.AddConsumer<CartCheckoutConsumer>();
+
+                config.UsingRabbitMq((ctx, cfg) =>
+                {
+                    cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+                    cfg.ReceiveEndpoint(EventBusConstants.CartCheckoutQueue, p =>
+                    {
+                        p.ConfigureConsumer<CartCheckoutConsumer>(ctx);
+                    });
+                });
+            });
+
+            services.AddMassTransitHostedService();
+
             services.AddControllers();
+            services.AddScoped<CartCheckoutConsumer>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Order.API", Version = "v1" });

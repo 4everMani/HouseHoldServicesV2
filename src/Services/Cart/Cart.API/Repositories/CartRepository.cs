@@ -1,6 +1,7 @@
 ﻿using Cart.API.Entities;
 using Cart.API.GrpcServices;
 using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,10 +14,13 @@ namespace Cart.API.Repositories
 
         private readonly CatalogGrpcService _grpcService;
 
-        public CartRepository(IDistributedCache redisCache, CatalogGrpcService grpcService)
+        private readonly ILogger<CartRepository> _logger;
+
+        public CartRepository(IDistributedCache redisCache, CatalogGrpcService grpcService, ILogger<CartRepository> logger)
         {
             _redisCache = redisCache;
             _grpcService = grpcService;
+            _logger = logger;
         }
 
 
@@ -83,6 +87,26 @@ namespace Cart.API.Repositories
             serviceCart.TotalPrice = total;
 
             return serviceCart;
+        }
+
+        public List<ServiceCartItem> ZipCodeAvailability(decimal zipcode, List<ServiceCartItem> items)
+        {
+            var cartItems = new List<ServiceCartItem>();
+
+            foreach(var item in items)
+            {
+                if (item.PinCodeCovers.Contains(zipcode))
+                {
+                    cartItems.Add(item);
+                }
+                else
+                {
+                    _logger.LogInformation("{0} is not available at {1}",item.ServiceName, zipcode);
+                }
+            }
+
+            return cartItems;
+
         }
 
     }
