@@ -72,7 +72,7 @@ namespace Ordering.API.Repositories
             return await GetOrderList(orders);
         }
 
-        public async Task<ReadOrder> CreateOrder(ReadOrder readOrder)
+        public async Task CreateOrder(ReadOrder readOrder)
         {
             if (readOrder == null)
             {
@@ -84,7 +84,6 @@ namespace Ordering.API.Repositories
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation("Order Created Successfully, " +
                 " Information required for service providers are as follows => {0}", order);
-            return await GetService(order);
         }
 
         public async Task UpdateAsync(Order order)

@@ -34,7 +34,7 @@ namespace Ordering.API.Data
 
             return new List<Order>
             {
-                new Order() {Id = 1, UserName = "mani", TotalPrice = 2312, ZipCode = 841226, CreatedOn = DateTime.Now, IsCancelled = false, OrderedBy = "Manish Jaiswal",
+                new Order() {Id = 1, UserName = "mani07", TotalPrice = 2312, ZipCode = 841226, CreatedOn = DateTime.Parse("2022-04-17T20:44:46.5638556+05:30"), IsCancelled = false, OrderedBy = "Manish Jaiswal",
                     },
             };
         }
@@ -43,7 +43,7 @@ namespace Ordering.API.Data
         {
             return new List<Service>
             {
-               new Service(){ UserName = "mani", Price = 2312, ProviderContactNumber = 2039456372, ProviderEmail = "fit32@gmail.com", ServiceName = "Fitness trainer", ServiceProvider="A-Z Fitness" }
+               new Service(){ CreatedOn = DateTime.Parse("2022-04-17T20:44:46.5638556+05:30"), Price = 2312, ProviderContactNumber = 2039456372, ProviderEmail = "fit32@gmail.com", ServiceName = "Fitness trainer", ServiceProvider="A-Z Fitness" }
             };
         }
     }
