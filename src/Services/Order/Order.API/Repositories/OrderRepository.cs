@@ -83,7 +83,7 @@ namespace Ordering.API.Repositories
             await _dbContext.Services.AddRangeAsync(readOrder.OrderedServices);
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation("Order Created Successfully, " +
-                " Information required for service providers are as follows => {0}", order);
+                " Information required for service providers are as follows =>\n Customer Name: {0} \n Customer ZipCode: {1}", order.OrderedBy, order.ZipCode);
         }
 
         public async Task UpdateAsync(Order order)
