@@ -1,0 +1,154 @@
+{
+  "Routes": [
+    // ServiceCatalog API
+    {
+      "DownstreamPathTemplate": "/api/ServiceCatalog",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "servicecatalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/ServiceCatalog",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "servicecatalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/ServiceCatalog/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "servicecatalog.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/ServiceCatalog/GetServiceByProvider/{providerName}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    // Cart API
+    {
+      "DownstreamPathTemplate": "/api/Cart/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cart.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart/{userName}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cart/CreateCart",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cart.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart/CreateCart",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "cart.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Cart/Checkout",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    // Ordering API
+    {
+      "DownstreamPathTemplate": "/api/Order/GetOrders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetOrders",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetOrderByUserName/{userName}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/CancelOrder/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetCancelledOrders",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "ordering.api",
+          "Port": "80"
+        }
+      ],
+      "UpstreamPathTemplate": "/Order/GetCancelledOrderByUserName/{userName}",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:5010"
+  }
+}
