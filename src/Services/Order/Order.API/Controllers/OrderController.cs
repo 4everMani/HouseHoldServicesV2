@@ -23,7 +23,7 @@ namespace Ordering.API.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _repo = repo ?? throw new ArgumentNullException(nameof(repo));
         }
-
+        [Route("[action]", Name = "GetOrders")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Order>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
@@ -56,13 +56,13 @@ namespace Ordering.API.Controllers
             return Ok(orders);
         }
 
-        [HttpPost]
-        [ProducesResponseType(typeof(Order), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Order>> CreateOrder([FromBody] ReadOrder order)
-        {
-            await _repo.CreateOrder(order);
-            return CreatedAtRoute("GetOrder", new { id = order.Id }, order);
-        }
+        //[HttpPost]
+        //[ProducesResponseType(typeof(Order), (int)HttpStatusCode.OK)]
+        //public async Task<ActionResult<Order>> CreateOrder([FromBody] ReadOrder order)
+        //{
+        //    await _repo.CreateOrder(order);
+        //    return CreatedAtRoute("GetOrder", new { id = order.Id }, order);
+        //}
 
         [Route("[action]/{id}", Name = "CancelOrder")]
         [HttpGet]

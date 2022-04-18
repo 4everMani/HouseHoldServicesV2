@@ -34,7 +34,7 @@ namespace Ordering.API.Data
 
             return new List<Order>
             {
-                new Order() {Id = 1, UserName = "mani07", TotalPrice = 2312, ZipCode = 841226, CreatedOn = DateTime.Parse("2022-04-17T20:44:46.5638556+05:30"), IsCancelled = false, OrderedBy = "Manish Jaiswal",
+                new Order() {UserName = "mani07", TotalPrice = 2312, ZipCode = 841226, CreatedOn = DateTime.Parse("2022-04-17T20:44:46.5638556+05:30"), IsCancelled = false, OrderedBy = "Manish Jaiswal",
                     },
             };
         }

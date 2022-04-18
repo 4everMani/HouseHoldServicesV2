@@ -39,6 +39,7 @@ namespace Cart.API.Controllers
             return Ok(cart ?? new ServiceCart(userName));
         }
 
+        [Route("CreateCart")]
         [HttpPost]
         [ProducesResponseType(typeof(ServiceCart), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ServiceCart>> UpdateCart([FromBody] ServiceCartWrite cart)
@@ -54,7 +55,7 @@ namespace Cart.API.Controllers
             return Ok();
         }
 
-        [Route("[action]")]
+        [Route("CheckoutCart")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

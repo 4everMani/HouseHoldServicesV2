@@ -94,9 +94,14 @@ namespace Ordering.API.Repositories
 
         private async Task<ReadOrder> GetService(Order order)
         {
+            if (order == null)
+            {
+                return null;
+            }
             var readOrder = new ReadOrder();
             var services = await _dbContext.Services.Where(i => i.CreatedOn == order.CreatedOn).ToListAsync();
             readOrder.ZipCode = order.ZipCode;
+            readOrder.Id = order.Id;
             readOrder.UserName = order.UserName;
             readOrder.TotalPrice = order.TotalPrice;
             readOrder.OrderedBy = order.OrderedBy;
