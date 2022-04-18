@@ -53,8 +53,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
       - "GrpcSettings:CatalogUrl=http://servicecatalog.api:443"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - cartdb
+      - rabbitmq
     ports:
       - "8001:80"
 
@@ -64,3 +66,6 @@ services:
       - "8002:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+    depends_on:
+      - rabbitmq
