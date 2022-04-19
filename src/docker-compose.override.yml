@@ -99,8 +99,6 @@ services:
 
   ocelotapigw:
     container_name: ocelotapigw
-    networks:
-      - consul
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
