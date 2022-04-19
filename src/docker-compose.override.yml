@@ -41,8 +41,6 @@ services:
 
   rabbitmq:
     container_name: rabbitmq
-    networks:
-      - consul
     restart: always
     ports:
       - "5672:5672"
@@ -60,8 +58,6 @@ services:
 
   servicecatalog.api:
     container_name: servicecatalog.api
-    networks:
-      - consul
     depends_on:
       - servicecatalogdb
       - consul-server
@@ -78,8 +74,6 @@ services:
 
   cart.api:
     container_name: cart.api
-    networks:
-      - consul
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
@@ -94,8 +88,6 @@ services:
 
   ordering.api:
     container_name: ordering.api
-    networks:
-      - consul
     ports:
       - "8002:80"
     environment:
