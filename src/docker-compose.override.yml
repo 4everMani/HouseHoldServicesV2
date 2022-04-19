@@ -37,6 +37,8 @@ services:
 
   cartdb:
     container_name: cartdb
+    networks:
+      - consul
     restart: always
     ports:
       - "6379:6379"
