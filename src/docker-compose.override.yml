@@ -7,6 +7,8 @@ services:
     restart: always
     volumes:
      - ./ApiGateways/OcelotApiGw/consul/client.json:/consul/config/client.json:ro
+    networks:
+      - consul
     command: "agent"
 
   consul-server:
@@ -15,6 +17,8 @@ services:
     hostname: service-registry
     volumes:
      - ./ApiGateways/OcelotApiGw/consul/server.json:/consul/config/server.json:ro
+    networks:
+      - consul
     ports:
       - "8500:8500"
       - "8600:8600/tcp"
@@ -38,6 +42,8 @@ services:
   rabbitmq:
     container_name: rabbitmq
     restart: always
+    networks:
+      - consul
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -55,6 +61,8 @@ services:
 
   ocelotapigw:
     container_name: ocelotapigw
+    networks:
+      - consul
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
@@ -66,6 +74,8 @@ services:
 
   servicecatalog.api:
     container_name: servicecatalog.api
+    networks:
+      - consul
     depends_on:
       - servicecatalogdb
     ports:
@@ -81,6 +91,8 @@ services:
 
   cart.api:
     container_name: cart.api
+    networks:
+      - consul
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
@@ -101,6 +113,8 @@ services:
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - rabbitmq
+    networks:
+      - consul
 
   
 
