@@ -2,18 +2,21 @@
   "Routes": [
     // ServiceCatalog API
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/ServiceCatalog",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
     },
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/ServiceCatalog/{id}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/ServiceCatalog/GetServiceByProvider/{providerName}",
@@ -21,18 +24,21 @@
     },
     // Cart API
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/{userName}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Cart/{userName}",
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/CreateCart",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Cart/CreateCart",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Cart/Checkout",
@@ -40,36 +46,42 @@
     },
     // Ordering API
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetOrders",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/GetOrders",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/{id}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/GetOrderByUserName/{userName}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/CancelOrder/{id}",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/GetCancelledOrders",
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/Order/GetCancelledOrderByUserName/{userName}",
