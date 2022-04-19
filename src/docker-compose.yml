@@ -37,6 +37,12 @@ services:
       context: .
       dockerfile: ApiGateways/OcelotApiGw/Dockerfile  
 
+  consul-server:
+    image: hashicorp/consul:1.10.0
+
+  consul-client:
+    image: hashicorp/consul:1.10.0
+
 volumes:
   mongo_data:
   portainer_data:
