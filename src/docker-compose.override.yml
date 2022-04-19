@@ -93,16 +93,17 @@ services:
     container_name: cart.api
     networks:
       - consul
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "CacheSettings:ConnectionString=cartdb:6379"
-      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:443"
-      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
       - cartdb
       - rabbitmq
     ports:
       - "8001:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=cartdb:6379"
+      - "GrpcSettings:CatalogUrl=http://servicecatalog.api:443"
+      - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+      - "ServiceConfig:ServiceAddress=http://cart.api:80"
 
   ordering.api:
     container_name: ordering.api
