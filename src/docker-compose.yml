@@ -43,7 +43,7 @@ services:
     restart: always
     hostname: service-registry
     volumes:
-     - ApiGateways/OcelotApiGw/consul/server.json:/consul/config/server.json:ro
+     - ./ApiGateways/OcelotApiGw/consul/server.json:/consul/config/server.json:ro
     networks:
       - consul
     ports:
@@ -57,7 +57,7 @@ services:
     container_name: consul-client
     restart: always
     volumes:
-     - ApiGateways/OcelotApiGw/consul/client.json:/consul/config/client.json:ro
+     - ./ApiGateways/OcelotApiGw/consul/client.json:/consul/config/client.json:ro
     networks:
       - consul
     command: "agent -bootstrap-expect=3"
@@ -65,7 +65,6 @@ services:
 volumes:
   mongo_data:
   portainer_data:
-  consul-client_data:
 
 networks:
   consul:
