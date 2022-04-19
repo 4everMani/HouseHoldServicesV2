@@ -69,15 +69,18 @@ services:
         - servicecatalog.api
         - cart.api
         - ordering.api
+        - consul-server
     ports:
       - "8010:80"
 
   servicecatalog.api:
     container_name: servicecatalog.api
+    hostname: servicecatalogApi
     networks:
       - consul
     depends_on:
       - servicecatalogdb
+      - consul-server
     ports:
       - "8000:80"
       - "9099:443"
@@ -88,14 +91,18 @@ services:
       - "Kestrel:Endpoints:webApi:Url=http://servicecatalog.api:80"
       - "Kestrel:Endpoints:Grpc:Protocols=Http2"
       - "Kestrel:Endpoints:Grpc:Url=http://servicecatalog.api:443"
+      - ServiceConfig__ServiceDiscoveryAddress=http://service-registry:8500/
+      - ServiceConfig__ServiceAddress=http://servicecatalogApi
 
   cart.api:
     container_name: cart.api
+    hostname: cartApi
     networks:
       - consul
     depends_on:
       - cartdb
       - rabbitmq
+      - consul-server
     ports:
       - "8001:80"
     environment:
@@ -103,17 +110,22 @@ services:
       - "CacheSettings:ConnectionString=cartdb:6379"
       - "GrpcSettings:CatalogUrl=http://servicecatalog.api:443"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
-      - "ServiceConfig:ServiceAddress=http://cart.api:80"
+      - ServiceConfig__ServiceDiscoveryAddress=http://service-registry:8500/
+      - ServiceConfig__ServiceAddress=http://cartApi
 
   ordering.api:
     container_name: ordering.api
+    hostname: orderingApi
     ports:
       - "8002:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
+      - ServiceConfig__ServiceDiscoveryAddress=http://service-registry:8500/
+      - ServiceConfig__ServiceAddress=http://orderingApi
     depends_on:
       - rabbitmq
+      - consul-server
     networks:
       - consul
 
