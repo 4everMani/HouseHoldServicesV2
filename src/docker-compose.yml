@@ -46,3 +46,5 @@ services:
 volumes:
   mongo_data:
   portainer_data:
+  consul-client_data:
+  consul-server_data:
