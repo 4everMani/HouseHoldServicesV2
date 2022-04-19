@@ -27,6 +27,8 @@ services:
 
   servicecatalogdb:
     container_name: servicecatalogdb
+    networks:
+      - consul
     restart: always
     ports:
       - "27017:27017"
