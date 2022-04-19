@@ -11,7 +11,12 @@
         }
       ],
       "UpstreamPathTemplate": "/ServiceCatalog",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
@@ -23,7 +28,12 @@
         }
       ],
       "UpstreamPathTemplate": "/ServiceCatalog/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
@@ -35,7 +45,12 @@
         }
       ],
       "UpstreamPathTemplate": "/ServiceCatalog/GetServiceByProvider/{providerName}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     // Cart API
     {
@@ -48,7 +63,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Cart/{userName}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Cart/CreateCart",
@@ -60,7 +80,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Cart/CreateCart",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
@@ -72,7 +97,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Cart/Checkout",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     // Ordering API
     {
@@ -85,7 +115,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/GetOrders",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Order/{id}",
@@ -97,7 +132,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/{id}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
@@ -109,7 +149,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/GetOrderByUserName/{userName}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
@@ -121,7 +166,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/CancelOrder/{id}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
@@ -133,7 +183,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/GetCancelledOrders",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     },
     {
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
@@ -145,7 +200,12 @@
         }
       ],
       "UpstreamPathTemplate": "/Order/GetCancelledOrderByUserName/{userName}",
-      "UpstreamHttpMethod": [ "GET" ]
+      "UpstreamHttpMethod": [ "GET" ],
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 2,
+        "DurationOfBreak": 5000,
+        "TimeoutValue": 2000
+      }
     }
   ],
   "GlobalConfiguration": {
