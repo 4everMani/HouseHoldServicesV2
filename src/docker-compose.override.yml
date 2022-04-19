@@ -42,6 +42,8 @@ services:
   rabbitmq:
     container_name: rabbitmq
     restart: always
+    networks:
+      - consul
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -56,8 +58,24 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
+  ocelotapigw:
+    container_name: ocelotapigw
+    networks:
+      - consul
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+        - consul-server
+        - servicecatalog.api
+        - cart.api
+        - ordering.api
+    ports:
+      - "8010:80"
+
   servicecatalog.api:
     container_name: servicecatalog.api
+    networks:
+      - consul
     depends_on:
       - servicecatalogdb
       - consul-server
@@ -74,6 +92,8 @@ services:
 
   cart.api:
     container_name: cart.api
+    networks:
+      - consul
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "CacheSettings:ConnectionString=cartdb:6379"
@@ -96,18 +116,8 @@ services:
     depends_on:
       - rabbitmq
       - consul-server
-
-  ocelotapigw:
-    container_name: ocelotapigw
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-        - consul-server
-        - servicecatalog.api
-        - cart.api
-        - ordering.api
-    ports:
-      - "8010:80"
+    networks:
+      - consul
 
   
 
