@@ -31,6 +31,7 @@ namespace ServiceCatalog.API
         {
             services.AddGrpc();
             services.AddControllers();
+            services.AddSingleton<IHostedService, ServiceDiscoveryHostedService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ServiceCatalog.API", Version = "v1" });

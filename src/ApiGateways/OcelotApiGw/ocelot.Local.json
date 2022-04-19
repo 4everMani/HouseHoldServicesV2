@@ -2,213 +2,156 @@
   "Routes": [
     // ServiceCatalog API
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8000"
-        }
-      ],
       "UpstreamPathTemplate": "/ServiceCatalog",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8000"
-        }
-      ],
       "UpstreamPathTemplate": "/ServiceCatalog/{id}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "ServiceCatalogAPI",
       "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8000"
-        }
-      ],
       "UpstreamPathTemplate": "/ServiceCatalog/GetServiceByProvider/{providerName}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     // Cart API
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/{userName}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8001"
-        }
-      ],
       "UpstreamPathTemplate": "/Cart/{userName}",
-      "UpstreamHttpMethod": [ "GET", "DELETE" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/CreateCart",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8001"
-        }
-      ],
       "UpstreamPathTemplate": "/Cart/CreateCart",
-      "UpstreamHttpMethod": [ "POST" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "POST" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "CartAPI",
       "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8001"
-        }
-      ],
       "UpstreamPathTemplate": "/Cart/Checkout",
-      "UpstreamHttpMethod": [ "POST" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "POST" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     // Ordering API
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetOrders",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/GetOrders",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
-      "UpstreamPathTemplate": "/Order/{id}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamPathTemplate": "/Order/{id}"
+      //"UpstreamHttpMethod": [ "GET" ],
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/GetOrderByUserName/{userName}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/CancelOrder/{id}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/GetCancelledOrders",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     },
     {
+      "ServiceName": "OrderingAPI",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
       "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": "8002"
-        }
-      ],
       "UpstreamPathTemplate": "/Order/GetCancelledOrderByUserName/{userName}",
-      "UpstreamHttpMethod": [ "GET" ],
-      "QoSOptions": {
-        "ExceptionsAllowedBeforeBreaking": 2,
-        "DurationOfBreak": 5000,
-        "TimeoutValue": 2000
-      }
+      "UpstreamHttpMethod": [ "GET" ]
+      //"QoSOptions": {
+      //  "ExceptionsAllowedBeforeBreaking": 2,
+      //  "DurationOfBreak": 5000,
+      //  "TimeoutValue": 2000
+      //}
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5010"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500
+    }
   }
 }

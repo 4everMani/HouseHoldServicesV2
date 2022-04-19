@@ -54,6 +54,8 @@ namespace Cart.API
 
             services.AddMassTransitHostedService();
 
+            services.AddSingleton<IHostedService, ServiceDiscoveryHostedService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cart.API", Version = "v1" });

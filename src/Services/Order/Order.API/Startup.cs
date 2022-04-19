@@ -47,6 +47,8 @@ namespace Ordering.API
 
             services.AddMassTransitHostedService();
 
+            services.AddSingleton<IHostedService, ServiceDiscoveryHostedService>();
+
             services.AddControllers();
             services.AddScoped<CartCheckoutConsumer>();
             services.AddSwaggerGen(c =>
