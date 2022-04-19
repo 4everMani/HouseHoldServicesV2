@@ -2,6 +2,7 @@
   "Routes": [
     // ServiceCatalog API
     {
+      "ServiceName": "ServiceCatalog API",
       "DownstreamPathTemplate": "/api/ServiceCatalog",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -14,6 +15,7 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
     },
     {
+      "ServiceName": "ServiceCatalog API",
       "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -26,6 +28,7 @@
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "ServiceName": "ServiceCatalog API",
       "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -39,6 +42,7 @@
     },
     // Cart API
     {
+      "ServiceName": "Cart API",
       "DownstreamPathTemplate": "/api/Cart/{userName}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -51,6 +55,7 @@
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "ServiceName": "Cart API",
       "DownstreamPathTemplate": "/api/Cart/CreateCart",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -63,6 +68,7 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
+      "ServiceName": "Cart API",
       "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -76,6 +82,7 @@
     },
     // Ordering API
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/GetOrders",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -88,6 +95,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -100,6 +108,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -112,6 +121,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -124,6 +134,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -136,6 +147,7 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "ServiceName": "Ordering API",
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -149,6 +161,10 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5010"
+    "ServiceDiscoveryProvider": {
+      "Host": "service-registry",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }

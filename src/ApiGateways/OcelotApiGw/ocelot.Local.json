@@ -1,9 +1,14 @@
 {
-  "Routes": [
+  "ReRoutes": [
     // ServiceCatalog API
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/ServiceCatalog",
       "DownstreamScheme": "http",
+      "ServiceName": "ServiceCatalog API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -14,8 +19,13 @@
       "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/ServiceCatalog/{id}",
       "DownstreamScheme": "http",
+      "ServiceName": "ServiceCatalog API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -26,8 +36,13 @@
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/ServiceCatalog/GetServiceByProvider/{providerName}",
       "DownstreamScheme": "http",
+      "ServiceName": "ServiceCatalog API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -39,8 +54,13 @@
     },
     // Cart API
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Cart/{userName}",
       "DownstreamScheme": "http",
+      "ServiceName": "Cart API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -51,8 +71,13 @@
       "UpstreamHttpMethod": [ "GET", "DELETE" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Cart/CreateCart",
       "DownstreamScheme": "http",
+      "ServiceName": "Cart API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -63,8 +88,13 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Cart/CheckoutCart",
       "DownstreamScheme": "http",
+      "ServiceName": "Cart API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -76,8 +106,13 @@
     },
     // Ordering API
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/GetOrders",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -88,8 +123,13 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/{id}",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -100,8 +140,13 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/GetOrderByUserName/{userName}",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -112,8 +157,13 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/CancelOrder/{id}",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -124,8 +174,13 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrders",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -136,8 +191,13 @@
       "UpstreamHttpMethod": [ "GET" ]
     },
     {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/Order/GetCancelledOrderByUserName/{userName}",
       "DownstreamScheme": "http",
+      "ServiceName": "Ordering API",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -149,6 +209,10 @@
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5010"
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": 8500,
+      "Type": "Consul"
+    }
   }
 }
